@@ -16,6 +16,9 @@ unwrapMaybeT = runMaybeT embedded
 unwrapExceptT :: ReaderT () IO (Either String (Maybe Int))
 unwrapExceptT = runExceptT unwrapMaybeT
 
+unwrapReaderT :: () -> IO (Either String (Maybe Int))
+unwrapReaderT = runReaderT unwrapExceptT
+
 main :: IO ()
 main = do
   putStrLn "hello world"
