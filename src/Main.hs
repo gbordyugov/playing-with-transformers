@@ -9,6 +9,11 @@ embedded :: MaybeT
                      (ReaderT () IO))
             Int
 embedded = return 1
+{-
+the same as
+embedded = MaybeT $ ExceptT $ ReaderT $ return <$>
+  (const (Right (Just 1)))
+-}
 
 unwrapMaybeT :: ExceptT String (ReaderT () IO) (Maybe Int)
 unwrapMaybeT = runMaybeT embedded
