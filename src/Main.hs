@@ -10,6 +10,9 @@ embedded :: MaybeT
             Int
 embedded = return 1
 
+unwrapMaybeT :: ExceptT String (ReaderT () IO) (Maybe Int)
+unwrapMaybeT = runMaybeT embedded
+
 main :: IO ()
 main = do
   putStrLn "hello world"
